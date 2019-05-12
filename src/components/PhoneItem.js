@@ -14,7 +14,7 @@ class PhoneItem extends PureComponent {
     return (
       <div className="item-phones">
         <img className="img-phone" src={photoPhone} alt="phone" />
-        <h2>{DeviceName}</h2>
+        <span className="device-name">{DeviceName}</span>
       </div>
     );
   }

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import fonoapi from 'fonoapi-nodejs';
 import {connect} from 'react-redux';
 import {loadPhones} from '../reducer/phones';
+import Navbar from './Navbar';
+import DropdownPhones from './DropdownPhones';
+import DropdownSort from './DropdownSort';
 import PhoneList from './PhoneList';
 
 class App extends Component {
@@ -21,7 +24,12 @@ class App extends Component {
 
   render() {
     return (
-      <PhoneList />
+      <>
+        <Navbar />
+        <DropdownPhones />
+        <DropdownSort />
+        <PhoneList />
+      </>
     );
   }
 }

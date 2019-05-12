@@ -33,10 +33,10 @@ class DropdownItem extends PureComponent {
     const {title, selected} = this.props;
 
     return (
-      <div>
-        <li role="presentation" onClick={this.handleSelectButton}>{title}</li>
+      <>
+        <li role="presentation" className="list-item" onClick={this.handleSelectButton}>{title}</li>
         {selected && <span>asdasda</span>}
-      </div>
+      </>
     );
   }
 }

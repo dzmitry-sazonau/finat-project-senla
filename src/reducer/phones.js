@@ -1,14 +1,11 @@
 import guid from '../utils';
+import {
+  LOAD_PHONES, ADD_PHONE, DELETE_PHONE, SEARCH_PHONES, CANCEL_SEARCH
+} from '../constants';
 
 const initialState = {
   phones: []
 };
-
-const LOAD_PHONES = 'LOAD_PHONES';
-const ADD_PHONE = 'ADD_PHONE';
-const DELETE_PHONE = 'DELETE_PHONE';
-// const CHANGE_PHONE = 'CHANGE_PHONE';
-
 
 const phones = (state = initialState, action) => {
   switch (action.type) {
@@ -18,7 +15,8 @@ const phones = (state = initialState, action) => {
         phones: action.payload.map(item => ({
           ...item,
           id: guid(),
-          store: false
+          isStore: false,
+          isSearch: false
         }))
       };
     case ADD_PHONE:
@@ -30,6 +28,27 @@ const phones = (state = initialState, action) => {
       return {
         ...state,
         phones: state.phones.filter(item => item.id !== action.payload)
+      };
+    case SEARCH_PHONES:
+      return {
+        ...state,
+        phones: state.phones.map((item) => {
+          if (item.DeviceName.toLowerCase().indexOf(action.payload.toLowerCase()) !== -1) {
+            return {
+              ...item,
+              isSearch: true
+            };
+          }
+          return item;
+        })
+      };
+    case CANCEL_SEARCH:
+      return {
+        ...state,
+        phones: state.phones.map(item => ({
+          ...item,
+          isSearch: false
+        }))
       };
     // case CHANGE_PHONE:
     //   return {
@@ -56,6 +75,14 @@ const deletePhone = value => ({
   payload: value
 });
 
+const seacrhPhones = value => ({
+  type: SEARCH_PHONES,
+  payload: value
+});
+
+const cancelSeacrh = () => ({
+  type: CANCEL_SEARCH,
+});
 
 const getPhones = state => state.phones;
 const selectPhones = state => getPhones(state).phones;
@@ -65,6 +92,8 @@ export {
   loadPhones,
   addPhone,
   deletePhone,
+  seacrhPhones,
+  cancelSeacrh,
 
   selectPhones
 };

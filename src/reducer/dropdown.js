@@ -1,37 +1,9 @@
-import guid from '../utils';
+import {SELECT_PHONES, DROPDOWN_PHONES, DROPDOWN_SORT} from '../constants';
 
 const initialState = {
-  dropdown: [
-    {
-      id: guid(),
-      title: 'Apple',
-      selected: false,
-    },
-    {
-      id: guid(),
-      title: 'Samsung',
-      selected: false,
-    },
-    {
-      id: guid(),
-      title: 'Xiaomi',
-      selected: false,
-    },
-    {
-      id: guid(),
-      title: 'Meizu',
-      selected: false,
-
-    },
-    {
-      id: guid(),
-      title: 'Huawei',
-      selected: false,
-    }
-  ]
+  dropdown: DROPDOWN_PHONES,
+  sort: DROPDOWN_SORT
 };
-
-const SELECT_PHONES = 'SELECT_PHONES';
 
 const dropdown = (state = initialState, action) => {
   switch (action.type) {
