@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import DropdownList from './DropdownPhonesItem';
-import {selectListPhones} from '../reducer/dropdown';
+import {selectListPhones} from '../../reducer/dropdown';
 
 const DropdownPhones = ({dropdown}) => {
   const [listPhones, isOpen] = useState(false);

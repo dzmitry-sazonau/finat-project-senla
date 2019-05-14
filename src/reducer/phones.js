@@ -1,6 +1,8 @@
 import guid from '../utils';
 import {
-  LOAD_PHONES, ADD_PHONE, DELETE_PHONE, SEARCH_PHONES, CANCEL_SEARCH
+  LOAD_PHONES, ADD_PHONE, DELETE_PHONE,
+  SEARCH_PHONES, CANCEL_SEARCH, ADD_TO_BASKET, DELETE_IN_BASKET,
+  SELECTED_IN_BASKET
 } from '../constants';
 
 const initialState = {
@@ -15,8 +17,10 @@ const phones = (state = initialState, action) => {
         phones: action.payload.map(item => ({
           ...item,
           id: guid(),
+          price: item.price ? item.price : 'About 730 EUR',
           isStore: false,
-          isSearch: false
+          isSearch: false,
+          isSelected: false,
         }))
       };
     case ADD_PHONE:
@@ -49,6 +53,45 @@ const phones = (state = initialState, action) => {
           ...item,
           isSearch: false
         }))
+      };
+    case ADD_TO_BASKET:
+      return {
+        ...state,
+        phones: state.phones.map((item) => {
+          if (item.id === action.payload) {
+            return {
+              ...item,
+              isStore: true
+            };
+          }
+          return item;
+        })
+      };
+    case DELETE_IN_BASKET:
+      return {
+        ...state,
+        phones: state.phones.map((item) => {
+          if (item.id === action.payload) {
+            return {
+              ...item,
+              isStore: false
+            };
+          }
+          return item;
+        })
+      };
+    case SELECTED_IN_BASKET:
+      return {
+        ...state,
+        phones: state.phones.map((item) => {
+          if (item.id === action.payload) {
+            return {
+              ...item,
+              isSelected: !item.isSelected
+            };
+          }
+          return item;
+        })
       };
     // case CHANGE_PHONE:
     //   return {
@@ -84,8 +127,25 @@ const cancelSeacrh = () => ({
   type: CANCEL_SEARCH,
 });
 
+const addToBasket = value => ({
+  type: ADD_TO_BASKET,
+  payload: value
+});
+
+const deleteInBasket = value => ({
+  type: DELETE_IN_BASKET,
+  payload: value
+});
+
+const selectedInBasket = value => ({
+  type: SELECTED_IN_BASKET,
+  payload: value
+});
+
+
 const getPhones = state => state.phones;
 const selectPhones = state => getPhones(state).phones;
+const getPhoneById = (state, id) => getPhones(state).phones.find(item => item.id === id);
 
 export default phones;
 export {
@@ -94,6 +154,10 @@ export {
   deletePhone,
   seacrhPhones,
   cancelSeacrh,
+  addToBasket,
+  deleteInBasket,
+  selectedInBasket,
 
-  selectPhones
+  selectPhones,
+  getPhoneById
 };

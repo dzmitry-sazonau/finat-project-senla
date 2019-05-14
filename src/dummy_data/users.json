@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Admin",
+    "surname": "admin",
+    "password": 1111,
+    "email": "mister.mitya99@gmail.com"
+  },
+  {
+    "name": "Dima",
+    "surname": "Sazonov",
+    "password": 2222,
+    "email": "nhz.dima.sazonov@gmail.com"
+  }
+]

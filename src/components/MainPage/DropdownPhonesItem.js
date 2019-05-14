@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import fonoapi from 'fonoapi-nodejs';
 import {connect} from 'react-redux';
-import {selectPhones} from '../reducer/dropdown';
-import {loadPhones} from '../reducer/phones';
+import {selectPhones} from '../../reducer/dropdown';
+import {loadPhones} from '../../reducer/phones';
 
 class DropdownItem extends PureComponent {
   static propTypes = {

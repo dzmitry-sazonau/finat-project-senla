@@ -1,8 +1,8 @@
-import {SELECT_PHONES, DROPDOWN_PHONES, DROPDOWN_SORT} from '../constants';
+import {SELECT_PHONES, DROPDOWN_PHONES, SORT} from '../constants';
 
 const initialState = {
   dropdown: DROPDOWN_PHONES,
-  sort: DROPDOWN_SORT
+  sort: SORT
 };
 
 const dropdown = (state = initialState, action) => {

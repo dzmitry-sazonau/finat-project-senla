@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {selectPhones} from '../reducer/phones';
+import {selectPhones} from '../../reducer/phones';
 import PhoneItem from './PhoneItem';
-import {FILTERS} from '../constants';
+import {FILTERS, SORT} from '../../constants';
+import Panel from './Panel';
 
 class PhoneList extends Component {
   static propTypes = {
@@ -31,6 +32,7 @@ class PhoneList extends Component {
     }
     return (
       <div className="main">
+        <Panel />
         <div className="list-phones">
           {currentTodos.map(item => (
             <PhoneItem key={item.id} {...item} />
@@ -55,13 +57,19 @@ class PhoneList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {filter} = state;
-  const allPhones = selectPhones(state);
+  const {filter, sort: {value}} = state;
+
+  const allPhones = [...selectPhones(state)];
+  const getPrice = (value) => {
+    const price = /[0-9]/gi;
+    return +value.match(price).join('');
+  };
+  let op = [];
+  if (!value) op = allPhones;
+  if (value === SORT.INCREASE) op = allPhones.sort((a, b) => getPrice(b.price) - getPrice(a.price));
+  if (value === SORT.DECREASE) op = allPhones.sort((a, b) => getPrice(a.price) - getPrice(b.price));
   return {
-    phones: filter === FILTERS.ALL ? allPhones : allPhones.filter(item => item.isSearch)
+    phones: filter === FILTERS.ALL ? op : op.filter(item => item.isSearch)
   };
 };
 export default connect(mapStateToProps)(PhoneList);
-
-
-// export default connect(state => ({phones: selectPhones(state)}))(PhoneList);
