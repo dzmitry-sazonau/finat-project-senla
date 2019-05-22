@@ -19,17 +19,18 @@ const FormSearch = ({
     cancelSeacrh();
   };
   return (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
+    <div className="form-search-wrapper">
+      <form onSubmit={handleSubmit} className="form-search">
         <Field
           name="search"
           label="Search"
+          className="input-search"
           type="text"
           component={InputFieldSearch}
         />
         <div className="buttons">
-          <button type="submit" disabled={invalid}>Find</button>
-          <button type="button" onClick={handleResetButton} disabled={pristine || submitting}>reset</button>
+          <button type="submit" className="button op" disabled={invalid}>Find</button>
+          <button type="button" className="button" onClick={handleResetButton} disabled={pristine || submitting}>Reset</button>
         </div>
       </form>
     </div>

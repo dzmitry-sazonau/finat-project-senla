@@ -15,6 +15,9 @@ class PhoneItem extends PureComponent {
     isLogin: PropTypes.bool.isRequired,
     addToBasket: PropTypes.func.isRequired,
     deletePhone: PropTypes.func.isRequired,
+    price: PropTypes.string.isRequired,
+    announced: PropTypes.string.isRequired,
+    isStore: PropTypes.string.isRequired
   }
 
   state = {
@@ -37,17 +40,24 @@ class PhoneItem extends PureComponent {
 
   render() {
     const {
-      DeviceName, id, isAdmin, isLogin
+      DeviceName, id, isAdmin, isLogin, price, announced, isStore
     } = this.props;
+    const check = !isStore
+      ? <button type="button" className="button-icon" onClick={this.handleAddButton}><i className="fas fa-plus" /></button>
+      : <button type="button" className="button-icon"><i className="fas fa-check" /></button>;
     const {isMouseOver} = this.state;
     return (
       <div onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
-        {isMouseOver && isLogin && <button type="button" onClick={this.handleAddButton}><i className="fas fa-plus" /></button>}
-        {isMouseOver && isAdmin && <button type="button" onClick={this.handleDeleteButton}><i className="fas fa-trash" /></button>}
+        <div className="button-phone">
+          {isMouseOver && isLogin && check}
+          {isMouseOver && isAdmin && <button type="button" className="button-icon" onClick={this.handleDeleteButton}><i className="fas fa-trash" /></button>}
+        </div>
         <Link to={`/phone/${id}`}>
           <div className="item-phones">
             <img className="img-phone" src={photoPhone} alt="phone" />
             <span className="device-name">{DeviceName}</span>
+            <span>{price}</span>
+            <span className="announced">{announced}</span>
           </div>
         </Link>
       </div>

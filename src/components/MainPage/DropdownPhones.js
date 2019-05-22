@@ -8,20 +8,18 @@ const DropdownPhones = ({dropdown}) => {
   const [listPhones, isOpen] = useState(false);
   const brand = dropdown.find(item => item.selected);
   return (
-    <div className="dropdown-phones">
-      <div className="wrapper">
-        <div className="wrapper-btn">
-          <div className="btn-dropdown" role="presentation" onClick={() => isOpen(!listPhones)}>{brand ? brand.title : 'Apple'}</div>
-        </div>
-        {listPhones
-          && (
-          <ul className="list">
-            {dropdown.map(item => (
-              <DropdownList key={item.id} closeDropdown={() => isOpen(!listPhones)} {...item} />
-            ))}
-          </ul>
-          )}
+    <div className="wrapper">
+      <div className="wrapper-btn">
+        <div className="btn-dropdown" role="presentation" onClick={() => isOpen(!listPhones)}>{brand ? brand.title : 'Apple'}</div>
       </div>
+      {listPhones
+        && (
+        <ul className="list">
+          {dropdown.map(item => (
+            <DropdownList key={item.id} closeDropdown={() => isOpen(!listPhones)} {...item} />
+          ))}
+        </ul>
+        )}
     </div>
   );
 };

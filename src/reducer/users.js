@@ -3,7 +3,7 @@ import {
 } from '../constants';
 
 const initialState = {
-  isAdmin: false,
+  isAdmin: true,
   isLogin: false,
   allUsers: [
     {
@@ -99,6 +99,8 @@ const selectAdmin = state => getState(state).isAdmin;
 
 const selectUsers = state => getState(state).allUsers;
 
+const selectName = state => getState(state).user;
+
 export default users;
 export {
   setAdmin,
@@ -110,5 +112,6 @@ export {
 
   selectAdmin,
   selectUser,
-  selectUsers
+  selectUsers,
+  selectName
 };

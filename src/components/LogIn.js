@@ -15,7 +15,7 @@ const LogIn = ({
     const newUser = users.filter(item => item.email === value.email);
     if (newUser[0].name === 'Admin') setAdmin();
     if (newUser[0].name !== 'Admin') setUser();
-    logPerson(newUser);
+    logPerson(newUser[0].name);
     history.push('/');
   };
   return (

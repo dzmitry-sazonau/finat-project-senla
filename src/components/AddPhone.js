@@ -4,15 +4,17 @@ import React from 'react';
 import FormAdd from './Forms/FormAdd';
 
 
-const AddPage = () => (
-  <div>
-    <h1>Add page</h1>
-    <FormAdd />
-  </div>
-);
+const AddPhone = () => {
+  return (
+    <div>
+      <h1>Add Phone</h1>
+      <FormAdd />
+    </div>
+  );
+};
 
 // LogIn.PropTypes = {
 
 // }
 
-export default AddPage;
+export default AddPhone;

@@ -15,7 +15,7 @@ import ShoppingBasket from './ShoppingBasket';
 import Registration from './Registration';
 import LogIn from './LogIn';
 import PhonePage from './PhonePage';
-import AddPage from './AddPage';
+import AddPhone from './AddPhone';
 
 class App extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ class App extends Component {
     }
     fonoapi.token = '04de6243c57ebb6c0c523e3abefc5b744fab1367832809cd';
     fonoapi.getLatest(myCallback, 100, 'Apple');
-    axios.get('../dummy_data/users')
+    axios.get('../dummy_data/users.json')
       .then((res) => {
         const users = res.data;
         loadUsers(users);
@@ -45,7 +45,7 @@ class App extends Component {
           <Route path="/" component={PhoneList} exact />
           <Route path="/phone/:id" component={PhonePage} />
           <Route path="/basket" component={ShoppingBasket} />
-          <Route path="/add" component={AddPage} />
+          <Route path="/add_phone" component={AddPhone} />
           <Route path="/login" component={LogIn} />
           <Route path="/registration" component={Registration} />
           <NotFoundPage />
