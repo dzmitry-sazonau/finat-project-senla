@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import FormReg from './Forms/FormReg';
 import {
-  setUser, selectUsers, logPerson, addUser
+  setUser, logPerson, addUser
 } from '../reducer/users';
 
 
 const Registration = ({
-  setUser, users, logPerson, history, addUser
+  setUser, logPerson, history, addUser
 }) => {
   const submit = (value) => {
     const obj = {...value};
     delete obj.confirmPassword;
-    const newUser = users.filter(item => item.email === obj.email);
     addUser(obj);
-    logPerson(newUser);
+    logPerson(obj.name);
     setUser();
     history.push('/');
   };
@@ -30,11 +29,9 @@ const Registration = ({
 
 Registration.propTypes = {
   logPerson: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired,
   setUser: PropTypes.func.isRequired,
   addUser: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 
-export default connect(state => ({users: selectUsers(state)}),
-  {setUser, addUser, logPerson})(Registration);
+export default connect(null, {setUser, addUser, logPerson})(Registration);

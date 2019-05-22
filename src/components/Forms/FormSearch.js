@@ -5,13 +5,16 @@ import {
 } from 'redux-form';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
+import {withRouter} from 'react-router-dom';
 import {cancelSeacrh} from '../../reducer/phones';
 import {setFilter} from '../../reducer/filter';
 import InputFieldSearch from './InputFieldSearch';
 import {FILTERS} from '../../constants';
+import {required} from './validation';
 
 const FormSearch = ({
-  handleSubmit, pristine, submitting, reset, invalid, setFilter, cancelSeacrh
+  handleSubmit, pristine, submitting,
+  reset, invalid, setFilter, cancelSeacrh, history
 }) => {
   const handleResetButton = () => {
     reset();
@@ -27,9 +30,10 @@ const FormSearch = ({
           className="input-search"
           type="text"
           component={InputFieldSearch}
+          validate={[required]}
         />
         <div className="buttons">
-          <button type="submit" className="button op" disabled={invalid}>Find</button>
+          <button type="submit" className="button op" onClick={() => history.push('/')} disabled={invalid}>Find</button>
           <button type="button" className="button" onClick={handleResetButton} disabled={pristine || submitting}>Reset</button>
         </div>
       </form>
@@ -47,9 +51,9 @@ FormSearch.propTypes = {
   cancelSeacrh: PropTypes.func.isRequired
 };
 
-export default compose(
+export default withRouter(compose(
   connect(null, {setFilter, cancelSeacrh}),
   reduxForm({
     form: 'FormSearch',
   })
-)(FormSearch);
+)(FormSearch));

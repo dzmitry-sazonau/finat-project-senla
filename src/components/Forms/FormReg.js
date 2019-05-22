@@ -14,6 +14,7 @@ const FormReg = ({
   handleSubmit, pristine, submitting, reset, invalid
 }) => (
   <div className="form">
+    <p>Registrate</p>
     <form onSubmit={handleSubmit}>
       <Field
         name="name"
@@ -51,8 +52,8 @@ const FormReg = ({
         validate={[required, normalEmail, validateEmail]}
       />
       <div className="buttons">
-        <button type="submit" disabled={invalid}>Registrate</button>
-        <button type="button" onClick={reset} disabled={pristine || submitting}>reset</button>
+        <button type="submit" className="button" disabled={invalid}>Registrate</button>
+        <button type="button" className="button" onClick={reset} disabled={pristine || submitting}>Reset</button>
       </div>
     </form>
   </div>

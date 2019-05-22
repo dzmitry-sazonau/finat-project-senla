@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import FormLog from './Forms/FormLog';
 import {
@@ -23,7 +22,6 @@ const LogIn = ({
       <FormLog
         onSubmit={submit}
       />
-      <Link to="/registration">Registration</Link>
     </div>
   );
 };

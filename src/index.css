@@ -302,3 +302,55 @@ li {
   margin-top: 70px;
   margin-right: 400px;
 }
+
+
+.form {
+  margin-top: 100px;
+}
+
+.form-edit form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form p {
+  margin-left: 300px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.item-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-form label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.item-form label input {
+  margin: 10px 0px;
+}
+
+.item-form label select {
+  margin: 10px 0px;
+  background-color: #F5F5F5
+}
+
+.checkbox label {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

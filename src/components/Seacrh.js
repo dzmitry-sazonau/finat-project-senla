@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
 import {setFilter} from '../reducer/filter';
 import {seacrhPhones} from '../reducer/phones';
 import {setSort} from '../reducer/sort';

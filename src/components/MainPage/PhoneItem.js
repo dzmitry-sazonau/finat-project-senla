@@ -17,7 +17,7 @@ class PhoneItem extends PureComponent {
     deletePhone: PropTypes.func.isRequired,
     price: PropTypes.string.isRequired,
     announced: PropTypes.string.isRequired,
-    isStore: PropTypes.string.isRequired
+    isStore: PropTypes.bool.isRequired
   }
 
   state = {

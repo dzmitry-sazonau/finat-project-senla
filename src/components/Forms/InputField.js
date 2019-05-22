@@ -6,7 +6,7 @@ const InputField = (props) => {
     input, meta, label, type
   } = props;
   return (
-    <div className="item-form">
+    <div className={type === 'checkbox' ? 'item-form checkbox' : 'item-form'}>
       <label htmlFor={label}>
         {label}
         <input {...input} type={type} className="input-form" />

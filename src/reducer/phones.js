@@ -2,7 +2,7 @@ import guid from '../utils';
 import {
   LOAD_PHONES, ADD_PHONE, DELETE_PHONE,
   SEARCH_PHONES, CANCEL_SEARCH, ADD_TO_BASKET, DELETE_IN_BASKET,
-  SELECTED_IN_BASKET
+  SELECTED_IN_BASKET, CHANGE_PHONE
 } from '../constants';
 
 const initialState = {
@@ -20,13 +20,22 @@ const phones = (state = initialState, action) => {
           price: item.price ? item.price : 'About 730 EUR',
           isStore: false,
           isSearch: false,
-          isSelected: false,
+          isSelected: false
         }))
       };
     case ADD_PHONE:
       return {
         ...state,
-        phones: [...state.phones, action.payload]
+        phones: [{
+          ...action.payload,
+          id: guid(),
+          price: action.payload.price ? action.payload.price : 'About 730 EUR',
+          nfc: action.payload.nfc ? 'Yes' : 'No',
+          gprs: action.payload.gprs ? 'Yes' : 'No',
+          isStore: false,
+          isSearch: false,
+          isSelected: false
+        }, ...state.phones]
       };
     case DELETE_PHONE:
       return {
@@ -93,11 +102,22 @@ const phones = (state = initialState, action) => {
           return item;
         })
       };
-    // case CHANGE_PHONE:
-    //   return {
-    //     ...state,
-    //     phones: state.phones.filter(item => item.id !== action.payload)
-    //   };
+    case CHANGE_PHONE:
+      return {
+        ...state,
+        phones: state.phones.map((item) => {
+          if (item.id === action.payload.id) {
+            return {
+              ...item,
+              ...action.payload,
+              price: action.payload.price ? action.payload.price : 'About 730 EUR',
+              nfc: action.payload.nfc ? 'Yes' : 'No',
+              gprs: action.payload.gprs ? 'Yes' : 'No',
+            };
+          }
+          return item;
+        })
+      };
     default:
       return state;
   }
@@ -115,6 +135,11 @@ const addPhone = value => ({
 
 const deletePhone = value => ({
   type: DELETE_PHONE,
+  payload: value
+});
+
+const changePhone = value => ({
+  type: CHANGE_PHONE,
   payload: value
 });
 
@@ -157,6 +182,7 @@ export {
   addToBasket,
   deleteInBasket,
   selectedInBasket,
+  changePhone,
 
   selectPhones,
   getPhoneById

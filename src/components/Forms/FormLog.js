@@ -5,6 +5,7 @@ import {
 } from 'redux-form';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
+import {Link} from 'react-router-dom';
 import InputField from './InputField';
 import {
   required, includeEmail, includePassword
@@ -14,6 +15,7 @@ const FormLog = ({
   handleSubmit, invalid
 }) => (
   <div className="form">
+    <p>Log in</p>
     <form onSubmit={handleSubmit}>
       <Field
         name="email"
@@ -30,7 +32,8 @@ const FormLog = ({
         validate={[required, includePassword]}
       />
       <div className="buttons">
-        <button type="submit" disabled={invalid}>Sign</button>
+        <button type="submit" className="button" disabled={invalid}>Sign</button>
+        <button type="button" className="button"><Link to="/registration">Registration</Link></button>
       </div>
     </form>
   </div>
