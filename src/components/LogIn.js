@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import FormLog from './Forms/FormLog';
@@ -10,15 +10,17 @@ import {
 const LogIn = ({
   setUser, users, logPerson, setAdmin, history
 }) => {
-  const submit = (value) => {
+  const submit = useCallback((value) => {
     const newUser = users.filter(item => item.email === value.email);
     if (newUser[0].name === 'Admin') setAdmin();
     if (newUser[0].name !== 'Admin') setUser();
     logPerson(newUser[0].name);
     history.push('/');
-  };
+  }, [setUser, users, logPerson, setAdmin, history]);
+
   return (
     <div>
+      <p className="form-title">Log in</p>
       <FormLog
         onSubmit={submit}
       />

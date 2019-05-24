@@ -15,7 +15,6 @@ const FormAdd = ({
   handleSubmit, pristine, submitting, reset, invalid
 }) => (
   <div className="form">
-    <p>Add Phone</p>
     <form onSubmit={handleSubmit}>
       <Field
         name="DeviceName"

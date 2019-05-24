@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import FormReg from './Forms/FormReg';
@@ -10,16 +10,18 @@ import {
 const Registration = ({
   setUser, logPerson, history, addUser
 }) => {
-  const submit = (value) => {
+  const submit = useCallback((value) => {
     const obj = {...value};
     delete obj.confirmPassword;
     addUser(obj);
     logPerson(obj.name);
     setUser();
     history.push('/');
-  };
+  }, [setUser, logPerson, history, addUser]);
+
   return (
     <div>
+      <p className="form-title">Registration</p>
       <FormReg
         onSubmit={submit}
       />

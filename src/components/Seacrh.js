@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
 import {setFilter} from '../reducer/filter';
 import {seacrhPhones} from '../reducer/phones';
 import {setSort} from '../reducer/sort';
@@ -9,7 +8,7 @@ import FormSearch from './Forms/FormSearch';
 import {FILTERS} from '../constants';
 
 
-class Seacrh extends React.Component {
+class Seacrh extends PureComponent {
   static propTypes = {
     setFilter: PropTypes.func.isRequired,
     seacrhPhones: PropTypes.func.isRequired,

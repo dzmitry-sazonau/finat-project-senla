@@ -11,7 +11,7 @@ const InputField = (props) => {
         {label}
         <input {...input} type={type} className="input-form" />
       </label>
-      {(meta.error && meta.touched) && <span style={{color: 'red'}}>{meta.error}</span>}
+      {(meta.error && meta.visited) && <span style={{color: 'red'}}>{meta.error}</span>}
     </div>
   );
 };

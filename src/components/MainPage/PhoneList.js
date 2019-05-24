@@ -13,7 +13,7 @@ class PhoneList extends Component {
 
   state = {
     currentPage: 1,
-    todosPerPage: 15
+    phonesPerPage: 15
   }
 
   handleClick = (event) => {
@@ -22,19 +22,19 @@ class PhoneList extends Component {
 
   render() {
     const {phones} = this.props;
-    const {currentPage, todosPerPage} = this.state;
-    const indexOfLastTodo = currentPage * todosPerPage;
-    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-    const currentTodos = phones.slice(indexOfFirstTodo, indexOfLastTodo);
+    const {currentPage, phonesPerPage} = this.state;
+    const indexOfLastPhone = currentPage * phonesPerPage;
+    const indexOfFirstPhone = indexOfLastPhone - phonesPerPage;
+    const currentPhones = phones.slice(indexOfFirstPhone, indexOfLastPhone);
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(phones.length / todosPerPage); i += 1) {
+    for (let i = 1; i <= Math.ceil(phones.length / phonesPerPage); i += 1) {
       pageNumbers.push(i);
     }
     return (
       <div className="main">
         <Panel />
         <div className="list-phones">
-          {currentTodos.map(item => (
+          {currentPhones.map(item => (
             <PhoneItem key={item.id} {...item} />
           ))}
         </div>

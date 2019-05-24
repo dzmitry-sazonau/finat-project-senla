@@ -3,7 +3,7 @@ import {
 } from '../constants';
 
 const initialState = {
-  isAdmin: true,
+  isAdmin: false,
   isLogin: false,
   allUsers: [
     {

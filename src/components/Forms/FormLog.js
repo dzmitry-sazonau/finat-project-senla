@@ -15,7 +15,6 @@ const FormLog = ({
   handleSubmit, invalid
 }) => (
   <div className="form">
-    <p>Log in</p>
     <form onSubmit={handleSubmit}>
       <Field
         name="email"

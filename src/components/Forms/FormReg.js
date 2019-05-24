@@ -14,7 +14,6 @@ const FormReg = ({
   handleSubmit, pristine, submitting, reset, invalid
 }) => (
   <div className="form">
-    <p>Registrate</p>
     <form onSubmit={handleSubmit}>
       <Field
         name="name"
