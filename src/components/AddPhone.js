@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import FormAdd from './Forms/FormAdd';
+import FormPhone from './Forms/FormPhone';
 import {addPhone} from '../reducer/phones';
 import {selectAdmin} from '../reducer/users';
 
@@ -19,7 +19,7 @@ const AddPhone = ({addPhone, isAdmin}) => {
         ? (
           <div>
             <p className="form-title">Add Phone</p>
-            <FormAdd onSubmit={submit} />
+            <FormPhone onSubmit={submit} />
           </div>
         )
         : <Redirect to="/" />

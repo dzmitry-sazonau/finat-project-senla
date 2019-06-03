@@ -7,7 +7,7 @@ import {
   deletePhone, changePhone
 } from '../reducer/phones';
 import {selectAdmin, selectUser} from '../reducer/users';
-import FormEdit from './Forms/FormEdit';
+import FormPhone from './Forms/FormPhone';
 import photoPhone from '../img/phone.jpg';
 
 class PhotoPage extends PureComponent {
@@ -112,7 +112,7 @@ class PhotoPage extends PureComponent {
                 </div>
               </div>
             )
-            : <FormEdit onSubmit={this.submit} />}
+            : <FormPhone onSubmit={this.submit} initialValues={phone} />}
         </div>
       );
     }
